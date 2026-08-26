@@ -1,0 +1,33 @@
+[project]
+name = "bpe-tokenizer"
+version = "0.1.0"
+description = "A FastAPI and React demo for training and inspecting BPE tokenizers."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "pydantic",
+    "regex",
+    "uvicorn[standard]",
+]
+
+[project.scripts]
+bpe-tokenizer = "bpe_tokenizer.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[dependency-groups]
+dev = [
+    "httpx",
+    "pytest",
+    "pytest-asyncio",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
