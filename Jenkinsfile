@@ -1,78 +1,48 @@
 pipeline {
-  agent any
+    agent any
 
-  environment {
-    APP_NAME = 'bpe-tokenizer'
-    IMAGE_NAME = 'bpe-tokenizer'
-    IMAGE_TAG = "${env.BUILD_NUMBER}"
-    DOCKER_BUILDKIT = '1'
-  }
-
-  options {
-    timestamps()
-    skipDefaultCheckout(false)
-  }
-
-  stages {
-    stage('Checkout') {
-      steps {
-        checkout scm
-      }
+    environment {
+        REPO_URL = 'https://github.com/AarizZafar/BPE_tokenizer_end_to_end.git'
+        BRANCH = 'main'
+        APP_URL = 'http://127.0.0.1:8001/api/health'
     }
 
-    stage('Python Setup') {
-      steps {
-        bat '''
-          python --version
-          python -m pip install --upgrade pip
-          python -m pip install fastapi pydantic regex "uvicorn[standard]" httpx pytest pytest-asyncio
-        '''
-      }
-    }
-
-    stage('Backend Tests') {
-      steps {
-        bat '''
-          python -m pytest
-        '''
-      }
-    }
-
-    stage('Frontend Build') {
-      steps {
-        dir('frontend') {
-          bat '''
-            npm ci
-            npm run build
-          '''
+    stages {
+        stage('Clone') {
+            steps {
+                git branch: "${BRANCH}", url: "${REPO_URL}"
+            }
         }
-      }
+
+        stage('Stop Old Containers') {
+            steps {
+                sh 'docker compose down --rmi local || true'
+            }
+        }
+
+        stage('Build And Run') {
+            steps {
+                sh 'docker compose up --build -d'
+            }
+        }
+
+        stage('Health Check') {
+            steps {
+                sleep(time: 15, unit: 'SECONDS')
+                sh 'docker compose ps'
+                sh 'curl -f ${APP_URL}'
+            }
+        }
     }
 
-    stage('Docker Compose Validate') {
-      steps {
-        bat '''
-          docker compose config
-        '''
-      }
-    }
+    post {
+        success {
+            echo 'Deployment successful'
+        }
 
-    stage('Docker Build') {
-      steps {
-        bat '''
-          docker build -t %IMAGE_NAME%:%IMAGE_TAG% -t %IMAGE_NAME%:latest .
-        '''
-      }
+        failure {
+            echo 'Deployment failed'
+            sh 'docker compose logs bpe-tokenizer || true'
+        }
     }
-  }
-
-  post {
-    success {
-      echo "Pipeline completed successfully. Built image: ${IMAGE_NAME}:${IMAGE_TAG}"
-    }
-
-    failure {
-      echo 'Pipeline failed. Check the stage logs above.'
-    }
-  }
 }
