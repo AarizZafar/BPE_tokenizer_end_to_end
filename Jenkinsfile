@@ -4,8 +4,11 @@ pipeline {
     environment {
         REPO_URL = 'https://github.com/AarizZafar/BPE_tokenizer_end_to_end.git'
         BRANCH = 'main'
-        APP_URL = 'http://127.0.0.1:8001/api/health'
         SERVICE_NAME = 'bpe-tokenizer'
+    }
+
+    options {
+        skipDefaultCheckout(true)
     }
 
     stages {
@@ -31,7 +34,9 @@ pipeline {
             steps {
                 sleep(time: 15, unit: 'SECONDS')
                 sh 'docker-compose ps'
-                sh 'curl -f ${APP_URL}'
+                sh '''
+                    docker-compose exec -T ${SERVICE_NAME} python -c "import urllib.request; print(urllib.request.urlopen('http://127.0.0.1:8001/api/health').read().decode())"
+                '''
             }
         }
     }
