@@ -1,11 +1,16 @@
 services:
-  app:
+  bpe-tokenizer:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: bpe_app
+    image: bpe-tokenizer:latest
+    container_name: bpe-tokenizer
     restart: unless-stopped
+    environment:
+      ARTIFACTS_DIR: /app/artifacts
+      FRONTEND_DIST_DIR: /app/frontend/dist
+      PORT: 8001
     ports:
       - "8001:8001"
     volumes:
-      - ./artifacts:/artifacts
+      - ./artifacts:/app/artifacts:ro
