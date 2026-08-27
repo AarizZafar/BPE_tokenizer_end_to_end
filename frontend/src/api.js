@@ -1,11 +1,9 @@
-import axios from 'axios'
-
+﻿import axios from 'axios'
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL || '/api',
   timeout: 300000,
 })
-
 
 export function getErrorMessage(error) {
   const detail = error.response?.data?.detail
@@ -14,6 +12,5 @@ export function getErrorMessage(error) {
   }
   return detail || error.message
 }
-
 
 export default api
