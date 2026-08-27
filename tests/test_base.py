@@ -1,4 +1,4 @@
-from src.execution_modules.tokenizer.base import get_stats, merge, replace_control_characters, render_token, Tokenizer
+from app.core.tokenizer_modules.base import get_stats, merge, replace_control_characters, render_token, Tokenizer
 
 
 def test_get_stats():

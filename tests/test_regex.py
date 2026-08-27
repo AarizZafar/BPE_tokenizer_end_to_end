@@ -1,5 +1,5 @@
 import pytest
-from src.execution_modules.tokenizer.regex_ import RegexTokenizer
+from app.core.tokenizer_modules.regex_ import RegexTokenizer
 
 
 TEXT = """

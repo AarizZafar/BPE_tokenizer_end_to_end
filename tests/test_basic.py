@@ -1,4 +1,4 @@
-from src.execution_modules.tokenizer.basic import BasicTokenizer
+from app.core.tokenizer_modules.basic import BasicTokenizer
 
 
 TEXT = """
