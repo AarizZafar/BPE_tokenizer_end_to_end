@@ -24,6 +24,6 @@ jobs:
         with:
           context: .
           push: true
-          tages: |
+          tags: |
             aarizzafar/bpe_tokenizer_api:latest
             aarizzafar/bpe_tokenizer_api:${{ github.sha }}
