@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
 import DatasetSelector from './components/DatasetSelector'
 import TrainingPanel from './components/TrainingPanel'
 import VocabViewer from './components/VocabViewer'
 import CompressionStats from './components/CompressionStats'
 import EncodePanel from './components/EncodePanel'
 import { getErrorMessage } from './api'
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api'
 import './App.css'
 
 export default function App() {
@@ -90,7 +92,7 @@ export default function App() {
     }, 80)
 
     try {
-      const response = await fetch('/api/train/stream', {
+      const response = await fetch(API_BASE_URL + '/train/stream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -236,3 +238,4 @@ export default function App() {
     </main>
   )
 }
+
