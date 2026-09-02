@@ -1,5 +1,7 @@
 ﻿# Byte Pair Encoding Tokenizer
 
+## This branch has been developed to run on Azure Container Apps + Static web App
+
 A small full-stack project for training and inspecting a Byte Pair Encoding tokenizer.
 
 The app lets you select a text dataset, train a Basic or Regex BPE tokenizer, watch merges happen live, inspect vocabulary growth, and test encode/decode behavior from the UI.

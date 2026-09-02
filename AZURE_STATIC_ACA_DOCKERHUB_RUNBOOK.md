@@ -1,7 +1,5 @@
 ﻿# Azure Static Web Apps + Docker Hub + Azure Container Apps Runbook
 
-## This branch has been developed to run on Azure Container Apps + Static web App
-
 Important 
 azure_static_aca_dockerhub - this branch is created for this the specific methodology 
 - Docker Hub image repository + GitHub Actions automation Azure Container Apps[backend] + Azure Static Web Apps[frontend]
