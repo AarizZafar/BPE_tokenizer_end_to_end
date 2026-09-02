@@ -85,12 +85,6 @@ bpe_tokenizer/
 main.py
 ```
 
-Runs the complete local application. It builds the frontend and starts FastAPI on port `8001`.
-
-```text
-app/app_run.py
-```
-
 Runs the backend only for API/Postman testing.
 
 ```text
