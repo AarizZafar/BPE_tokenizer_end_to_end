@@ -33,12 +33,19 @@ function TokenList({ title, tokens }) {
     <div className="artifact-column">
       <h3>{title}</h3>
       <div className="token-list artifact-list" ref={listRef}>
-        {tokens.map(([id, token]) => (
-          <div className="token-row" key={id}>
-            <strong>[{id}]</strong>
-            <span>{JSON.stringify(token)}</span>
+        {tokens.length ? (
+          tokens.map(([id, token]) => (
+            <div className="token-row" key={id}>
+              <strong>[{id}]</strong>
+              <span>{JSON.stringify(token)}</span>
+            </div>
+          ))
+        ) : (
+          <div className="empty-state compact">
+            <strong>No tokens yet</strong>
+            <span>Vocabulary entries appear as training runs.</span>
           </div>
-        ))}
+        )}
       </div>
     </div>
   )
@@ -57,13 +64,20 @@ function MergeList({ title, merges }) {
     <div className="artifact-column">
       <h3>{title}</h3>
       <div className="token-list artifact-list" ref={listRef}>
-        {merges.map(entry => (
-          <div className="token-row merge-chip" key={entry.idx}>
-            <strong>({entry.pair[0]}, {entry.pair[1]})</strong>
-            <span>-&gt;</span>
-            <strong>{entry.idx}</strong>
+        {merges.length ? (
+          merges.map(entry => (
+            <div className="token-row merge-chip" key={entry.idx}>
+              <strong>({entry.pair[0]}, {entry.pair[1]})</strong>
+              <span>-&gt;</span>
+              <strong>{entry.idx}</strong>
+            </div>
+          ))
+        ) : (
+          <div className="empty-state compact">
+            <strong>No merges yet</strong>
+            <span>Merge rules will collect beside the vocabulary.</span>
           </div>
-        ))}
+        )}
       </div>
     </div>
   )

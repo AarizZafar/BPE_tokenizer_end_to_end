@@ -54,3 +54,10 @@ Thumbs.db
 
 # Local scratch files
 text.txt
+.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pth
+.env
+input.txt

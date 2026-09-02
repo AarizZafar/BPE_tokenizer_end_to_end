@@ -137,31 +137,50 @@ export default function App() {
   const displayLog = trainResult?.merge_log || liveLog
   const displayVocab = trainResult?.vocab || liveVocab
   const hasVocab = Object.keys(displayVocab).length > 0
+  const activeStep = trainResult ? 'Inference ready' : isTraining ? 'Training in progress' : dataset ? 'Ready to train' : 'Choose a dataset'
 
   return (
     <main className="app-shell">
+      <header className="app-topbar">
+        <div className="brand-lockup">
+          <div className="brand-mark">BPE</div>
+          <div>
+            <p className="eyebrow">Tokenizer lab</p>
+            <h1>Byte Pair Encoding</h1>
+          </div>
+        </div>
+        <div className="topbar-actions">
+          <span className="status-pill">{activeStep}</span>
+          <a
+            className="github-link"
+            href="https://github.com/AarizZafar/BPE_tokenizer_end_to_end/tree/azure_SWP_ACA_DH"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="github-icon">&lt;/&gt;</span>
+            <span>Repository</span>
+          </a>
+        </div>
+      </header>
+
+      <nav className="step-strip" aria-label="Workflow">
+        <a href="#setup" className={!trainResult && !isTraining ? 'active' : ''}>
+          <span>01</span>
+          Setup
+        </a>
+        <a href="#training" className={isTraining ? 'active' : ''}>
+          <span>02</span>
+          Train
+        </a>
+        <a href="#inference" className={trainResult ? 'active' : ''}>
+          <span>03</span>
+          Infer
+        </a>
+      </nav>
+
       <section className="section-card flow-section config-section">
         <div className="section-content">
-          <header className="app-header">
-            <div className="brand-lockup">
-              <div className="brand-mark">B</div>
-              <div>
-                <h1>Byte Pair Encoding</h1>
-                <p>Interactive tokenizer training and inference workspace</p>
-              </div>
-            </div>
-            <a
-              className="github-link"
-              href="https://github.com/AarizZafar/BPE_tokenizer_end_to_end/tree/azure_SWP_ACA_DH"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span className="github-icon">&lt;/&gt;</span>
-              <span>AarizZafar/BPE Tokenizer</span>
-            </a>
-          </header>
-
-          <div className="section-title">
+          <div className="section-title" id="setup">
             <span>01</span>
             <div>
               <h2>Dataset Setup</h2>
@@ -179,17 +198,34 @@ export default function App() {
                 value={vocabSize}
                 onChange={event => setVocabSize(Number(event.target.value))}
               />
+              <input
+                aria-label="Vocab size slider"
+                type="range"
+                min="256"
+                max="1024"
+                step="4"
+                value={Math.min(1024, Math.max(256, vocabSize))}
+                onChange={event => setVocabSize(Number(event.target.value))}
+              />
             </div>
             <div className="field-row">
               <label htmlFor="tokenizer-type">Tokenizer</label>
-              <select
-                id="tokenizer-type"
-                value={tokenizerType}
-                onChange={event => setTokenizerType(event.target.value)}
-              >
-                <option value="regex">Regex</option>
-                <option value="basic">Basic</option>
-              </select>
+              <div className="segmented-control" id="tokenizer-type">
+                <button
+                  className={tokenizerType === 'regex' ? 'selected' : ''}
+                  type="button"
+                  onClick={() => setTokenizerType('regex')}
+                >
+                  Regex
+                </button>
+                <button
+                  className={tokenizerType === 'basic' ? 'selected' : ''}
+                  type="button"
+                  onClick={() => setTokenizerType('basic')}
+                >
+                  Basic
+                </button>
+              </div>
             </div>
             <button
               className="train-cta"
@@ -206,7 +242,7 @@ export default function App() {
 
       <section className="section-card flow-section training-section" ref={trainingSectionRef}>
         <div className="section-content">
-          <div className="section-title">
+          <div className="section-title" id="training">
             <span>02</span>
             <div>
               <h2>Live Training Console</h2>
@@ -234,7 +270,7 @@ export default function App() {
       {trainResult && (
         <section className="section-card flow-section results-section" ref={inferenceSectionRef}>
           <div className="section-content">
-            <div className="section-title">
+            <div className="section-title" id="inference">
               <span>03</span>
               <div>
                 <h2>Inference Console</h2>
