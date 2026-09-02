@@ -3,7 +3,7 @@ name: Build and push Docker Image
 on:
   push:
     branches:
-      - azure_static_aca_dockerhub
+      - azure_SWP_ACA_DH
 
 jobs:
   docker-build-push:
