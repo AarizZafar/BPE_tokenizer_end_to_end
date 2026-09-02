@@ -79,38 +79,6 @@ bpe_tokenizer/
 └── README.md
 ```
 
-## Main Files
-
-```text
-main.py
-```
-
-Runs the backend only for API/Postman testing.
-
-```text
-app/api/routes.py
-```
-
-Contains the FastAPI app factory and API routes.
-
-```text
-frontend/src/App.jsx
-```
-
-Main React UI.
-
-```text
-Dockerfile
-```
-
-Builds the React frontend and packages it with the FastAPI backend into one image.
-
-```text
-docker-compose.yml
-```
-
-Runs the Dockerized app locally on port `8001`.
-
 ## Run With Docker
 
 From the project root:
@@ -238,20 +206,9 @@ http://127.0.0.1:8001/api/datasets
 From the project root:
 
 ```powershell
-uv run pytest
+python -m pytest -v
 ```
 
-Verbose mode:
-
-```powershell
-uv run pytest -v
-```
-
-Run one file:
-
-```powershell
-uv run pytest tests/test_basic.py -v
-```
 
 ## Common API Endpoints
 
