@@ -1,4 +1,4 @@
-* {
+﻿* {
   box-sizing: border-box;
 }
 
@@ -182,6 +182,35 @@ pre {
 .app-header {
   display: block;
   margin-bottom: 18px;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  border: 1px solid rgba(126, 151, 184, 0.55);
+  border-radius: 999px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(224, 234, 247, 0.7));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    8px 10px 20px rgba(70, 94, 124, 0.17),
+    -7px -7px 16px rgba(255, 255, 255, 0.62);
+  color: #4f6fb7;
+  font-size: 13px;
+  font-weight: 900;
+  margin-top: 16px;
+  padding: 9px 15px;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, color 180ms ease;
+}
+
+.github-link:hover {
+  color: #263b86;
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    10px 13px 24px rgba(70, 94, 124, 0.22),
+    -8px -8px 18px rgba(255, 255, 255, 0.7);
 }
 
 .eyebrow {
@@ -1056,3 +1085,4 @@ h3 {
     bottom: 10px;
   }
 }
+

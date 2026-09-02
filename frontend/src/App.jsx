@@ -146,6 +146,14 @@ export default function App() {
             <div>
               <p className="eyebrow">BPE Tokenizer Lab</p>
               <h1>Train, inspect, encode, decode.</h1>
+              <a
+                className="github-link"
+                href="https://github.com/AarizZafar/BPE_tokenizer_end_to_end/tree/azure_SWP_ACA_DH"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View project on GitHub
+              </a>
             </div>
           </header>
 
@@ -238,4 +246,5 @@ export default function App() {
     </main>
   )
 }
+
 
