@@ -180,37 +180,93 @@ pre {
 }
 
 .app-header {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  border: 1px solid rgba(42, 73, 115, 0.52);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(17, 31, 48, 0.94), rgba(31, 50, 76, 0.92));
+  box-shadow:
+    18px 20px 38px rgba(28, 56, 92, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   margin-bottom: 18px;
+  padding: 18px 22px;
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #41c4df, #4567df);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    10px 12px 24px rgba(31, 74, 132, 0.34);
+  color: #ffffff;
+  font-family: "Bahnschrift", "Segoe UI", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.brand-lockup h1 {
+  color: #f4f8ff;
+  font-size: 30px;
+  text-shadow: none;
+}
+
+.brand-lockup p {
+  color: #b8c9df;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: 4px;
 }
 
 .github-link {
   display: inline-flex;
   align-items: center;
-  min-height: 38px;
-  border: 1px solid rgba(126, 151, 184, 0.55);
-  border-radius: 999px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(224, 234, 247, 0.7));
+  flex: 0 0 auto;
+  gap: 10px;
+  min-height: 50px;
+  border: 1px solid rgba(126, 151, 184, 0.28);
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(54, 68, 91, 0.92), rgba(34, 45, 64, 0.94));
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    8px 10px 20px rgba(70, 94, 124, 0.17),
-    -7px -7px 16px rgba(255, 255, 255, 0.62);
-  color: #4f6fb7;
-  font-size: 13px;
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    9px 11px 20px rgba(10, 20, 34, 0.28);
+  color: #dce9ff;
+  font-size: 15px;
   font-weight: 900;
-  margin-top: 16px;
-  padding: 9px 15px;
+  padding: 0 16px;
   text-decoration: none;
-  transition: transform 180ms ease, box-shadow 180ms ease, color 180ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .github-link:hover {
-  color: #263b86;
+  border-color: rgba(75, 196, 230, 0.5);
+  color: #ffffff;
   transform: translateY(-1px);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.95),
-    10px 13px 24px rgba(70, 94, 124, 0.22),
-    -8px -8px 18px rgba(255, 255, 255, 0.7);
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    12px 14px 26px rgba(10, 20, 34, 0.32),
+    0 0 0 4px rgba(75, 196, 230, 0.08);
+}
+
+.github-icon {
+  color: #9ed8ff;
+  font-family: "Cascadia Mono", Consolas, monospace;
+  font-size: 18px;
+  font-weight: 900;
 }
 
 .eyebrow {
@@ -1072,6 +1128,25 @@ h3 {
     font-size: 30px;
   }
 
+  .app-header {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .brand-lockup h1 {
+    font-size: 26px;
+  }
+
+  .brand-lockup p {
+    font-size: 14px;
+  }
+
+  .github-link {
+    justify-content: center;
+    width: 100%;
+  }
+
   .config-layout {
     min-height: 0;
   }
@@ -1085,4 +1160,6 @@ h3 {
     bottom: 10px;
   }
 }
+
+
 
