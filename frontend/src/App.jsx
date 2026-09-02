@@ -143,18 +143,22 @@ export default function App() {
       <section className="section-card flow-section config-section">
         <div className="section-content">
           <header className="app-header">
-            <div>
-              <p className="eyebrow">BPE Tokenizer Lab</p>
-              <h1>Train, inspect, encode, decode.</h1>
-              <a
-                className="github-link"
-                href="https://github.com/AarizZafar/BPE_tokenizer_end_to_end/tree/azure_SWP_ACA_DH"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View project on GitHub
-              </a>
+            <div className="brand-lockup">
+              <div className="brand-mark">B</div>
+              <div>
+                <h1>Byte Pair Encoding</h1>
+                <p>Interactive tokenizer training and inference workspace</p>
+              </div>
             </div>
+            <a
+              className="github-link"
+              href="https://github.com/AarizZafar/BPE_tokenizer_end_to_end/tree/azure_SWP_ACA_DH"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="github-icon">&lt;/&gt;</span>
+              <span>AarizZafar/BPE Tokenizer</span>
+            </a>
           </header>
 
           <div className="section-title">
@@ -246,6 +250,7 @@ export default function App() {
     </main>
   )
 }
+
 
 
 
